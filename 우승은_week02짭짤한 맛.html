@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>Goofy's closet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+
+    <style>
+
+        img {
+            width: 600px;
+            height: 500px;
+        }
+
+        .image {
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        .description {
+            width: 1900px;
+            margin: auto;
+        }
+
+        .horizontal {
+            display: flex;
+        }
+
+        .order {
+            height: 20px;
+        }
+
+        .order-button {
+            width: 100px;
+            margin: auto;
+        }
+
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .badge {
+            background-color: crimson;
+        }
+
+        .dollar {
+            color: blue;
+        }
+    </style>
+
+    <script>
+        function hi() {
+            if ($('#order-name').val() == "") {
+                alert('이름을 입력하세요.')
+            } else if ($('#order-number').val() == "") {
+                alert('수량을 입력하세요.')
+            } else if ($('#order-address').val() == "") {
+                alert('주소를 입력하세요.')
+            } else if ($('#order-telephone').val() == "") {
+                alert('전화번호를 입력하세요.')
+            } else {
+                alert('주문이 완료되었습니다.')
+            }
+
+        }
+
+        $(document).ready(function () {
+            $.ajax({
+                type:"GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                success: function(response) {
+                    console.log(response)
+                    $('#exchange-rate').text(response[1]["rate"]);
+                }
+            })
+        });
+
+        // $(document).ready(function () {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "https://api.manana.kr/exchange/rate.json",
+        //         success: function (response) {
+        //             $('#exchange-rate').val(response[1]["rate"]);
+        //         }
+        //     })
+        // }
+        // });
+
+
+    </script>
+</head>
+
+<body>
+<div class="image">
+    <img src="https://image.makewebeasy.net/makeweb/0/pNb0ifw4M/AProducts/LNN754_%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A2%E0%B8%84%E0%B8%AD%E0%B9%80%E0%B8%9E%E0%B8%8A%E0%B8%A3.jpg">
+</div>
+<div class="description">
+    <div class="horizontal">
+        <h1>엘리자베스 여왕의 목걸이<span class="badge badge-secondary">마감임박!</span></h1>
+        <h3>1,000,000,000원/개</h3>
+    </div>
+
+    <p>
+    <h5>
+        엘리자베스 여왕이 가장 아끼던 다이아몬드 목걸이! 그녀가 태어난 순간부터 지금까지, 심지어 목욕할 때까지도 한 번도 빼지 않은, 한 마디로 엘리자베스 여왕의 초애장품이다! 네크라인 주변에는 다이아가
+        100개 박혀 있는데, 이는 장수를 기원하는 의미를 담고 있다. 뿐만 아니라 가운데에 메달려 있는 다이아몬드는 중세 시대부터 전해져 온 보석이다.
+    </h5>
+</div>
+<div class="dollar">
+    달러-원 환율 :
+    <span id="exchange-rate"></span>
+</div>
+
+<p class="order">
+<h1>주문하기</h1>
+</p>
+<form>
+    <div class="form-group row">
+        <label for="order-name" class="col-sm-2 col-form-label">주문자 성함:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="order-name">
+        </div>
+    </div>
+</form>
+<form>
+    <div class="form-group row">
+        <label for="order-number" class="col-sm-2 col-form-label">수량:</label>
+        <div class="col-sm-10">
+            <select class="custom-select my-1 mr-sm-2" id="order-number">
+                <option selected></option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
+</form>
+<form>
+    <div class="form-group row">
+        <label for="order-address" class="col-sm-2 col-form-label">주소:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="order-address">
+        </div>
+    </div>
+</form>
+<form>
+    <div class="form-group row">
+        <label for="order-telephone" class="col-sm-2 col-form-label">전화번호:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="order-telephone">
+        </div>
+    </div>
+</form>
+<p>
+<div class="order-button">
+    <button onclick="hi()" type="button" class="btn btn-outline-secondary btn-lg">주문하기</button>
+</div>
+</p>
+
+</body>
+
+</html>
